@@ -1,0 +1,643 @@
+/* Import Google Font - Poppins */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Light Theme */
+body.light-theme {
+    --text-color: #1b1f1d;
+    --subheading-color: #2e6d5b;
+    --placeholder-color: #5c796f;
+    --primary-color: #f0f9f5;
+    --secondary-color: #204c3b;
+    --secondary-hover-color: #2a5c48;
+    --scrollbar-color: #5c796f;
+    --accent-green: #3cb371;
+    --accent-light: #e6f5ec;
+    --shadow-color: rgba(30, 70, 55, 0.1);
+    --card-bg: white;
+    --input-bg: white;
+    --border-color: #d0e6dc;
+}
+
+/* Dark Theme */
+body.dark-theme {
+    --text-color: #e0e0e0;
+    --subheading-color: #4ccb97;
+    --placeholder-color: #8a9e96;
+    --primary-color: #121f1b;
+    --secondary-color: #4ccb97;
+    --secondary-hover-color: #3cb371;
+    --scrollbar-color: #2e6d5b;
+    --accent-green: #4ccb97;
+    --accent-light: #1a2e27;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --card-bg: #1a2e27;
+    --input-bg: #1a2e27;
+    --border-color: #2a4a3d;
+}
+
+body {
+    background: var(--primary-color);
+    color: var(--text-color);
+}
+
+.container {
+    justify-items:auto;
+    overflow-y: auto;
+    padding: 32px 0 100px;
+    height: 100vh;
+    scrollbar-width: thin;
+    margin: auto;
+    scrollbar-color: var(--scrollbar-color) transparent;
+}
+
+.container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.container::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-color);
+    border-radius: 3px;
+}
+
+.container :where(.app-header, .suggestions, .message, .prompt-wrapper) {
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 24px;
+    max-width: 990px;
+}
+
+.app-header {
+    margin-top: 2vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 30px;
+}
+
+.header-content {
+    max-width: 80%;
+}
+
+.app-header .heading {
+    font-size: 2.8rem;
+    font-weight: 700;
+    background: linear-gradient(to right, var(--secondary-color), var(--accent-green));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.2;
+    margin-bottom: 8px;
+}
+
+.app-header .sub-heading {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--subheading-color);
+    opacity: 0.9;
+}
+
+.leaf-decoration {
+    background-color: var(--accent-light);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--secondary-color);
+    font-size: 32px;
+    box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.suggestions {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+
+.suggestions .suggestions-item {
+    cursor: pointer;
+    padding: 20px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    border-radius: 16px;
+    background: var(--card-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 8px var(--shadow-color);
+    height: 180px;
+    justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.suggestions .suggestions-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px var(--shadow-color);
+    background: var(--accent-light);
+}
+
+.suggestion-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.suggestions .suggestions-item .text {
+    font-size: 1.1rem;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 20px;
+}
+
+.suggestions .suggestions-item .icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    font-size: 1.6rem;
+    align-items: center;
+    border-radius: 12px;
+    justify-content: center;
+    color: white;
+    background: var(--secondary-color);
+    margin-bottom: 15px;
+}
+
+.suggestion-footer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.suggestion-footer span {
+    color: var(--secondary-color);
+    opacity: 0.7;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.suggestions-item:hover .suggestion-footer span {
+    opacity: 1;
+    transform: translateX(3px);
+}
+
+.chats-container {
+    display: flex;
+    gap: 24px;
+    flex-direction: column;
+    padding-bottom: 20px;
+}
+
+.chats-container .message {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+}
+
+.chats-container .message .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    padding: 8px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 4px var(--shadow-color);
+    flex-shrink: 0;
+}
+
+.chats-container .message .message-text {
+    padding: 12px 18px;
+    word-wrap: break-word;
+    white-space: pre-line;
+    line-height: 1.5;
+    border-radius: 18px;
+    background: var(--card-bg);
+    box-shadow: 0 2px 4px var(--shadow-color);
+    max-width: 80%;
+}
+
+.chats-container .user-message {
+    flex-direction: row-reverse;
+}
+
+.chats-container .user-message .message-text {
+    background: var(--secondary-color);
+    color: white;
+    border-radius: 18px 18px 4px 18px;
+}
+
+.chats-container .bot-message.loading .message-text {
+    color: var(--placeholder-color);
+    font-style: italic;
+}
+
+.prompt-container {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    padding: 20px 0;
+    background: var(--primary-color);
+    border-top: 1px solid var(--border-color);
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+.prompt-wrapper {
+    display: flex;
+    gap: 12px;
+    height: 60px;
+    align-items: center;
+}
+
+.prompt-form {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background: var(--input-bg);
+    border-radius: 30px;
+    box-shadow: 0 2px 8px var(--shadow-color);
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    padding-right: 8px;
+}
+
+.prompt-input {
+    width: 100%;
+    height: 100%;
+    background: none;
+    outline: none;
+    border: none;
+    font-size: 1rem;
+    color: var(--text-color);
+    padding: 0 24px;
+    font-weight: 400;
+}
+
+.prompt-input::placeholder {
+    color: var(--placeholder-color);
+    opacity: 0.7;
+}
+
+.prompt-actions {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    height: 100%;
+}
+
+.prompt-wrapper button {
+    width: 42px;
+    height: 42px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 1.3rem;
+    border: none;
+    color: var(--text-color);
+    background: var(--input-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
+
+.send-btn {
+    background: var(--secondary-color) !important;
+    color: white !important;
+}
+
+.send-btn:hover {
+    background: var(--secondary-hover-color) !important;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+#cancel-file-btn, #stop-response-btn {
+    color: #d62939;
+    display: none;
+}
+
+#cancel-file-btn:hover, #stop-response-btn:hover {
+    background: #fde8e8 !important;
+}
+
+.file-upload-wrapper.active #cancel-file-btn {
+    display: flex;
+}
+
+.bot-responding #stop-response-btn {
+    display: flex;
+}
+
+.bot-responding .send-btn {
+    display: none;
+}
+
+.prompt-container .disclaimer-text {
+    font-size: 0.8rem;
+    text-align: center;
+    padding: 16px 20px 0;
+    color: var(--placeholder-color);
+    opacity: 0.7;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px 0 120px;
+    }
+    
+    .app-header {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .header-content {
+        max-width: 100%;
+    }
+    
+    .app-header .heading {
+        font-size: 2.2rem;
+    }
+    
+    .app-header .sub-heading {
+        font-size: 1.3rem;
+    }
+    
+    .leaf-decoration {
+        width: 50px;
+        height: 50px;
+        font-size: 28px;
+    }
+    
+    .suggestions {
+        grid-template-columns: 1fr;
+    }
+    
+    .prompt-wrapper {
+        gap: 8px;
+    }
+    
+    .action-buttons {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .container :where(.app-header, .suggestions, .message, .prompt-wrapper) {
+        padding: 0 16px;
+    }
+    
+    .app-header .heading {
+        font-size: 1.8rem;
+    }
+    
+    .chats-container .message .message-text {
+        max-width: 75%;
+    }
+}
+.suggestion-slider {
+  overflow: hidden;
+  position: relative;
+}
+
+.suggestions.animate-slide {
+  display: flex;
+  width: max-content;
+  animation: slideLeft 8s linear 1; /* 1 cycle only */
+}
+
+@keyframes slideLeft {
+  0% {
+      transform: translateX(0);
+  }
+  100% {
+      transform: translateX(-100%);
+  }
+}
+
+/* Ensure individual cards don’t wrap */
+.suggestions.animate-slide .suggestions-item {
+  flex: 0 0 240px;
+  margin-right: 20px;
+}
+/* Sidebar Styles */
+.sidebar {
+  width: 300px;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background: var(--primary-color);
+  border-right: 1px solid var(--border-color);
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 100;
+}
+
+.sidebar h1 {
+  font-size: 3rem;
+  margin-bottom: 30px;
+}
+
+.sidebar-cards {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.eco-card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px var(--shadow-color);
+  border: 1px solid var(--border-color);
+  transition: transform 0.3s ease;
+}
+
+.eco-card:hover {
+  transform: translateY(-5px);
+}
+
+.eco-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.eco-card-content {
+  padding: 15px;
+}
+
+.eco-card h4 {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+  color: var(--text-color);
+}
+
+.eco-card p {
+  font-size: 0.9rem;
+  color: var(--placeholder-color);
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.price {
+  font-weight: 600;
+  color: var(--secondary-color);
+}
+
+/* Adjust main content to account for sidebar */
+.main-content {
+  margin-left: 300px;
+  width: calc(100% - 300px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .sidebar {
+      width: 250px;
+  }
+  
+  .main-content {
+      margin-left: 250px;
+      width: calc(100% - 250px);
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+  }
+  
+  .sidebar.active {
+      transform: translateX(0);
+  }
+  
+  .main-content {
+      margin-left: 0;
+      width: 100%;
+  }
+  
+  /* Add a menu button to toggle sidebar on mobile */
+  .sidebar-toggle {
+      position: fixed;
+      left: 15px;
+      top: 15px;
+      z-index: 101;
+      background: var(--secondary-color);
+      color: white;
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      cursor: pointer;
+      box-shadow: 0 2px 8px var(--shadow-color);
+  }
+}
+/* Sidebar Styling */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -260px;
+    width: 250px;
+    height: 100%;
+    background-color: #e6f4ea;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    transition: left 0.3s ease;
+    z-index: 1000;
+    overflow-y: auto;
+    border-right: 2px solid #c3e6cb;
+  }
+  .sidebar.open {
+    left: 0;
+  }
+  
+  /* Open Button */
+  .open-sidebar-btn {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 1100;
+    background-color: #81c784;
+    color: #fff;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.5rem;
+  }
+  
+  /* Close Button */
+  .close-sidebar-btn {
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    cursor: pointer;
+    color: #2e7d32;
+    margin-bottom: 1rem;
+  }
+  
+  /* Main Shifted Content */
+  #main-container {
+    transition: margin-left 0.3s ease;
+  }
+  #main-container.shifted {
+    margin-left: 250px;
+  }
+  
+  /* Sidebar Content */
+  .sidebar-title {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: #388e3c;
+    font-weight: 600;
+  }
+  
+  .product-card {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    text-align: center;
+  }
+  .product-img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+  }
+  .product-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #2e7d32;
+  }
+  .product-desc {
+    font-size: 0.875rem;
+    color: #555;
+  }

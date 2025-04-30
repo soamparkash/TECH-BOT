@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Tech Support Chatbot</title>
+<style>
+  body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+  }
+
+  .container {
+    width: 80%;
+    max-width: 1200px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 30px;
+  }
+
+  .left-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .chat-header {
+    background-color: #e0e0e0;
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .chat-header input[type="text"] {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+  }
+
+  .chat-header button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .chat-window {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .chat-window .message {
+    background-color: #e0e0e0;
+    padding: 10px;
+    border-radius: 4px;
+  }
+
+  .chat-window .message.user {
+    align-self: flex-end;
+    background-color: #007bff;
+    color: white;
+  }
+
+  .chat-input {
+    display: flex;
+    gap: 10px;
+  }
+
+  .chat-input input[type="text"] {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .chat-input button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .right-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .user-info {
+    background-color: #e0e0e0;
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    gap: 10px;
+  }
+
+  .user-info img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+
+  .knowledge-base {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+  }
+
+  .knowledge-base h2 {
+    margin-top: 0;
+  }
+
+  .knowledge-base ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .knowledge-base li {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="left-panel">
+      <div class="chat-header">
+        <input type="text" placeholder="Search...">
+        <button>Search</button>
+      </div>
+      <div class="chat-window">
+        <div class="message">Hello, how can I help you?</div>
+        <div class="message user">I'm having trouble connecting to the Wi-Fi.</div>
+      </div>
+      <div class="chat-input">
+        <input type="text" placeholder="Type your message...">
+        <button>Send</button>
+      </div>
+    </div>
+    <div class="right-panel">
+      <div class="user-info">
+        <img src="user-avatar.png" alt="User Avatar">
+        <div>
+          <h3>User Name</h3>
+          <p>Last login: 9:00 AM</p>
+        </div>
+      </div>
+      <div class="knowledge-base">
+        <h2>Knowledge Base</h2>
+        <ul>
+          <li>Common FAQs</li>
+          <li>Troubleshooting Guides</li>
+          <li>Software Updates</li>
+          <li>Hardware Support</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
